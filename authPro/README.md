@@ -1,0 +1,1 @@
+The authApp is a django backend-based authentication and authorization app the uses the authentication and authorization modules of Django
