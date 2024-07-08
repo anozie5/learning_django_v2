@@ -4,4 +4,5 @@ from authApp import views
 urlpatterns = [
     path('', views.home_view, name = 'home'),
     path('sign-up/', views.sign_up_view, name = 'signup'),
+    path('log-in/', views.log_in_view, name = 'login'),
 ]

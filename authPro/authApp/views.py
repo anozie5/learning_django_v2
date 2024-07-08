@@ -23,7 +23,7 @@ def log_in_view(request):
     if request.method == 'POST':
         form = forms.LoginForm (request.POST)
         if form.is_valid():
-            return redirect ('')
+            return redirect ('home')
     return render (request, 'registration/log-in.html', {'form' : form})
 
 
