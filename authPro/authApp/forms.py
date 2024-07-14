@@ -9,3 +9,12 @@ class RegisterForm (UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+# form for posts
+class PostForm (forms.ModelForm):
+    class Meta:
+        model = models.Post
+        fields = {
+            'user': 'user',
+            'post': 'post'
+        }

@@ -3,6 +3,8 @@ from authApp import views
 
 urlpatterns = [
     path('', views.home_view, name = 'home'),
-    path('sign-up/', views.sign_up_view, name = 'signup'),
-    path('log-in/', views.log_in_view, name = 'login'),
+    path('login/', views.log_in_view, name = 'login'),
+    path('signup/', views.sign_up_view, name = 'signup'),
+    path('create/<int:id>/', views.create_post, name = 'create'),
+    path('delete/<int:ui>/', views.delete_post, name = 'delete')
 ]

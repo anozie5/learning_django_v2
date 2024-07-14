@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %} Create Post {% endblock %}
+
+{% block content %}
+    <div class = 'container-fluid'>
+        <h2> What is on your mind today?</h2>
+        <form >
+            {% csrf_token %}
+            {{ form }}
+            <button type= 'submit' class= 'btn btn-success'> Post </button>
+        </form>
+    </div>
+{% endblock %}

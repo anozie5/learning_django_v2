@@ -5,8 +5,9 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <form method = "post">
-        {% csrf_token %} {{ form|crispy }}
-        <p>Don't have an account? Create one <a href="{% url 'signup' %}"> Here </a>!</p>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <p>Don't have an account? Create one <a href="signup.html"> Here </a>!</p>
         <button type = 'submit' class = 'btn btn-success'>Log in</button>
     </form>
 {% endblock %}
