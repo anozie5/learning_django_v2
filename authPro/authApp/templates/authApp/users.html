@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %} Users {% endblock %}
+
+{% block content %}
+    <table>
+        {% for users in user %}
+            <thead class = 'thead-secondary'>
+                <tr> List Of Users </tr>
+            </thead>
+            <tbody>
+                <td>{{ users.user_name }}</td>
+                <td>{{ users.first_name }}</td>
+                <td>{{ users.last_name }}</td>
+                <td>{{ users.email }}</td>
+                <td>{{ users.date_created }}</td>
+            </tbody>
+        {% endfor %}
+    </table>
+{% endblock %}

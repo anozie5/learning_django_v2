@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -10,10 +9,13 @@ class UserAccount (models.Model):
     last_name = models.CharField (max_length = 20)
     user_name = models.TextField(max_length = 20)
     email = models.EmailField()
+    password = models.ForeignKey (User, on_delete = models.CASCADE, null = False)
     date_created = models.DateTimeField(auto_now_add = True)
 
 # for posts
 class Post (models.Model):
-    user = models.ForeignKey (User, on_delete = models.CASCADE)
+    user = models.ForeignKey (UserAccount, on_delete = models.CASCADE, related_name = 'user_names')
     post = models.TextField()
-    date_created = models.DateTimeField(auto_now = True)
+    date_created = models.DateTimeField(auto_now_add = True)
+    date_modified = models.DateTimeField(auto_now = True)
+
