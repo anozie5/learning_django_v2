@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractBaseUser
 
 # Create your models here.
 
@@ -9,7 +9,7 @@ class UserAccount (models.Model):
     last_name = models.CharField (max_length = 20)
     user_name = models.TextField(max_length = 20)
     email = models.EmailField()
-    password = models.ForeignKey (User, on_delete = models.CASCADE, null = False)
+    password = models.TextField()
     date_created = models.DateTimeField(auto_now_add = True)
 
 # for posts
