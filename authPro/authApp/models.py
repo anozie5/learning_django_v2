@@ -1,18 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
 # Create your models here.
 
 # for users
-class UserAccount (User):
+class UserAccount (models.Model):
     first_name = models.CharField (max_length = 20)
     last_name = models.CharField (max_length = 20)
-    user_name = models.TextField(max_length = 20)
     email = models.EmailField()
     password = models.TextField()
-    User.set_password(password)
-    date_created = models.DateTimeField(auto_now_add = True)
-    
-
+    date_created = models.DateTimeField (auto_now_add = True)
+ 
 # for posts
 class Post (models.Model):
     user = models.ForeignKey (UserAccount, on_delete = models.CASCADE, related_name = 'user_names')
