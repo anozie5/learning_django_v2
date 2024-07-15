@@ -1,18 +1,9 @@
 from django.db import models
-# Create your models here.
+from django.contrib.auth.models import User
 
-# for users
-class UserAccount (models.Model):
-    first_name = models.CharField (max_length = 20)
-    last_name = models.CharField (max_length = 20)
-    email = models.EmailField()
-    password = models.TextField()
-    date_created = models.DateTimeField (auto_now_add = True)
- 
-# for posts
+# create models
 class Post (models.Model):
-    user = models.ForeignKey (UserAccount, on_delete = models.CASCADE, related_name = 'user_names')
-    post = models.TextField()
-    date_created = models.DateTimeField(auto_now_add = True)
-    date_modified = models.DateTimeField(auto_now = True)
-
+    user = models.OneToOneField (User, on_delete = models.CASCADE)
+    text = models.TextField()
+    date_created = models.DateTimeField (auto_now_add = True)
+    date_updated = models.DateTimeField (auto_now = True)
