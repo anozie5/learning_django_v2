@@ -32,7 +32,17 @@ def logout_view(request):
     return render (request, 'registration/login.html')
 
 # creating post
+@login_required
 def create_post(request, ui):
+    post = models.UserAccount.Object.get(id = ui)
+    form = forms.PostForm()
+    if request.method == 'POST':
+        form = forms.PostForm(request.POST, instance = post)
+        return redirect ('post')
+    return render (request, 'authApp/create.html', {'form': form})
+
+# updating a post
+def update_post(request, ui):
     post = models.Post.Object.get(id = ui)
     form = forms.PostForm()
     if request.method == 'POST':
