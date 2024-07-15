@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block title %} Delete User{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% csrf_token %}
+        <p>Are you sure you want ban {{ user.user_name }} forever?</p>
+        <button class="btn btn-success" type = 'post'> Yes </button>
+        <a href="{% url 'users' %}" class="btn btn-warning"> No </a>
+    </div>
+{% endblock %}

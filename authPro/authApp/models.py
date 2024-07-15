@@ -11,6 +11,7 @@ class UserAccount (models.Model):
     email = models.EmailField()
     password = models.TextField()
     date_created = models.DateTimeField(auto_now_add = True)
+    USERNAME_FIELD = user_name
 
 # for posts
 class Post (models.Model):

@@ -56,11 +56,12 @@ def users_view (request):
     return render (request, 'authApp/users.html', {'user': users})
 
 # banning a user
+@permission_required
 def ban_user_view (request, ui):
     user = models.UserAccount.object.get(id = ui)
     if request.method == 'post':
         user = user(request.post)
         user.delete()
-        return redirect ('allUsers')
+        return redirect ('users')
     return render (request, 'authApp/delete_user', {'user': user})
 
