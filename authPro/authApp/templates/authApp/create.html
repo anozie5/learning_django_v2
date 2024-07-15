@@ -3,8 +3,8 @@
 {% block title %} Create Post {% endblock %}
 
 {% block content %}
-    <div class = 'container-fluid'>
-        <h2> What is on your mind today?</h2>
+    <div class = 'container'>
+        <h2> What is on your mind today, {{ post.username }}?</h2>
         <form >
             {% csrf_token %}
             {{ form }}

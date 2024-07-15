@@ -11,7 +11,7 @@ def home_view(request):
 # login view
 def log_in_view(request):
     form = forms.LoginForm()
-    if request.method == 'POST':
+    if request.method == "POST":
         form = forms.LoginForm (request.POST)
         if form.is_valid():
             return redirect ('home')
@@ -25,7 +25,7 @@ def sign_up_view(request):
         if form.is_valid():
             form.save()
             return redirect ('login')
-    return render (request, 'registration/signup', {'form' : form})
+    return render (request, 'registration/signup.html', {'form' : form})
 
 # Logout view
 def logout_view(request):
@@ -34,18 +34,18 @@ def logout_view(request):
 # creating post
 @login_required
 def create_post(request, ui):
-    post = models.User.Object.get(id = ui)
+    post = models.Account.Object.get(id = ui)
     form = forms.PostForm()
-    if request.method == 'POST':
+    if request.method == "POST":
         form = forms.PostForm(request.POST, instance = post)
         return redirect ('post')
-    return render (request, 'authApp/create.html', {'form': form})
+    return render (request, 'authApp/create.html', {'form': form, 'post': post})
 
 # updating a post
 def update_post(request, ui):
     post = models.Post.Object.get(id = ui)
     form = forms.PostForm()
-    if request.method == 'POST':
+    if request.method == "POST":
         form = forms.PostForm(request.POST, instance = post)
         return redirect ('post')
     return render (request, 'authApp/create.html', {'form': form})
@@ -53,7 +53,7 @@ def update_post(request, ui):
 # deleting a post
 def delete_post (request, ui):
     post = models.Post.object.get(id = ui)
-    if request.method == 'POST':
+    if request.method == "POST":
         post = post(request.POST)
         post.delete()
         return redirect ('post')
@@ -62,16 +62,16 @@ def delete_post (request, ui):
 # listing all users
 @permission_required
 def users_view (request):
-    users = models.User.object.all()
+    users = models.Account.object.all()
     return render (request, 'authApp/users.html', {'user': users})
 
 # banning a user
 @permission_required
 def ban_user_view (request, ui):
-    user = models.User.object.get(id = ui)
-    if request.method == 'post':
+    user = models.Account.object.get(id = ui)
+    if request.method == "POST":
         user = user(request.post)
         user.delete()
         return redirect ('users')
-    return render (request, 'authApp/delete_user', {'user': user})
+    return render (request, 'authApp/delete_user.html', {'user': user})
 
