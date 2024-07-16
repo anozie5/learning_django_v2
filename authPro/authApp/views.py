@@ -33,13 +33,12 @@ def logout_view(request):
 
 # creating post
 @login_required
-def create_post(request, ui):
-    post = models.Account.Object.get(id = ui)
+def create_post(request):
     form = forms.PostForm()
     if request.method == "POST":
-        form = forms.PostForm(request.POST, instance = post)
+        form = forms.PostForm(request.POST)
         return redirect ('post')
-    return render (request, 'authApp/create.html', {'form': form, 'post': post})
+    return render (request, 'authApp/create.html', {'form': form})
 
 # updating a post
 def update_post(request, ui):
@@ -62,13 +61,13 @@ def delete_post (request, ui):
 # listing all users
 @permission_required
 def users_view (request):
-    users = models.Account.object.all()
+    users = models.UserAccount
     return render (request, 'authApp/users.html', {'user': users})
 
 # banning a user
 @permission_required
 def ban_user_view (request, ui):
-    user = models.Account.object.get(id = ui)
+    user = models.UserAccount.object.get(id = ui)
     if request.method == "POST":
         user = user(request.post)
         user.delete()
