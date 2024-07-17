@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from authApp import forms, models
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -23,7 +26,8 @@ def sign_up_view(request):
     if request.method == "POST":
         form = forms.RegisterForm (request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            login(request, user)
             return redirect ('login')
     return render (request, 'registration/signup.html', {'form' : form})
 
@@ -61,13 +65,13 @@ def delete_post (request, ui):
 # listing all users
 @permission_required
 def users_view (request):
-    users = models.UserAccount
+    users = User.object.all()
     return render (request, 'authApp/users.html', {'user': users})
 
 # banning a user
 @permission_required
 def ban_user_view (request, ui):
-    user = models.UserAccount.object.get(id = ui)
+    user = User.object.get(id = ui)
     if request.method == "POST":
         user = user(request.post)
         user.delete()
